@@ -29,6 +29,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      movieUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   },
   async down(queryInterface, Sequelize) {

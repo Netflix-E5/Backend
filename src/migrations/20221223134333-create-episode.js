@@ -3,9 +3,13 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Episodes', {
-      episodeId: {
+      id: {
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      episodeId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -18,6 +22,10 @@ module.exports = {
         allowNull: false,
       },
       story: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      episodeUrl: {
         type: Sequelize.STRING,
         allowNull: false,
       },
