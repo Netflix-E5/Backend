@@ -13,6 +13,13 @@ const routes = require('./routes/index.js');
 //   errorLogger,
 // } = require('./middlewares/error-middleware');
 
+const morgan = require('morgan');
+const Winston = require('./util/WinstonUtil.js');
+
+app.use(
+    morgan(':method :status :url :response-time ms', { stream: Winston.stream })
+);
+
 app.use(express.json());
 // app.use(cookieParser());
 // app.use(cors(corsOptions));
