@@ -4,7 +4,6 @@ const viewController = require('../main/view/controller.js');
 const ViewController = new viewController
 
 
-// router.post('/signup', UserController.signUp); // 회원 생성
+//router.get('/movies/view', viewController.viewMovie); // 컨텐츠 상세 정보 조회 API
 
-
-module.exports = ViewController;
+module.exports = router;

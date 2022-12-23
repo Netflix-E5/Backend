@@ -1,5 +1,9 @@
-const ratingRepository = require('../main/rating/repository.js')
+const RatingRepository = require('./repository')
+class RatingService {
+  constructor() {
 
+  }
 
+}
 
-module.exports = ratingService
+module.exports = RatingService

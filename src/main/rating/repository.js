@@ -1,1 +1,8 @@
-module.exports = ratingRepository;
+class RatingRepository {
+  constructor() {
+
+  }
+
+}
+module.exports = RatingRepository;
+

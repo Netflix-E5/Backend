@@ -1,10 +1,10 @@
 const express = require('express');
+
 const router = express.Router();
+
 const movieController = require('../main/movie/controller.js');
 const MovieController = new movieController
 
+// router.get('/:movieId', MovieController.getMovie); // 컨텐츠 상세 정보 조회 API
 
-// router.post('/signup', UserController.signUp); // 회원 생성
-
-
-module.exports = MovieController;
+module.exports = router;

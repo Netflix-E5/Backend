@@ -1,1 +1,8 @@
-module.exports = userRepository;
+class UserRepository {
+  constructor() {
+
+  }
+
+}
+module.exports = UserRepository;
+

@@ -1,1 +1,8 @@
-module.exports = genreRepository;
+class GenreRepository {
+  constructor() {
+
+  }
+
+}
+module.exports = GenreRepository;
+

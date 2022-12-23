@@ -1,5 +1,9 @@
-const userRepository = require('../main/user/repository.js')
+const UserRepository = require('./repository')
+class UserService {
+  constructor() {
 
+  }
 
+}
 
-module.exports = userService
+module.exports = UserService

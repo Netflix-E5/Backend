@@ -7,4 +7,4 @@ const EpisodeController = new episodeController
 // router.post('/signup', UserController.signUp); // 회원 생성
 
 
-module.exports = EpisodeController;
+module.exports = router;

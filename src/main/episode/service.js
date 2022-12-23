@@ -1,5 +1,10 @@
-const episodeRepository = require('../main/episode/repository.js')
+const EpisodeRepository = require('./repository')
 
+class EpisodeService {
+  constructor() {
 
+  }
 
-module.exports = episodeService
+}
+
+module.exports = EpisodeService

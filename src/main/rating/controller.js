@@ -1,5 +1,8 @@
-const ratingService = require('../main/rating/services.js')
+const ratingService = require('./service')
+class RatingController {
+  constructor() {
 
+  }
+}
 
-
-module.exports = ratingController
+module.exports = RatingController

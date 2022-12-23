@@ -1,5 +1,8 @@
-const userService = require('../main/user/services.js')
+const UserService = require('./service')
+class UserController {
+  constructor() {
 
+  }
+}
 
-
-module.exports = userController
+module.exports = UserController

@@ -1,1 +1,8 @@
-module.exports = pickRepository;
+class PickRepository {
+  constructor() {
+
+  }
+
+}
+module.exports = PickRepository;
+

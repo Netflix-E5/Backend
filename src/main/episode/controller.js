@@ -1,5 +1,9 @@
-const episodeService = require('../main/episode/services.js')
+const EpisodeService = require('./service')
 
+class EpisodeController {
+  constructor() {
 
+  }
+}
 
-module.exports = episodeController
+module.exports = EpisodeController

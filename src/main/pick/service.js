@@ -1,5 +1,9 @@
-const pickRepository = require('../main/pick/repository.js')
+const PickRepository = require('./repository')
+class PickService {
+  constructor() {
 
+  }
 
+}
 
-module.exports = pickService
+module.exports = PickService

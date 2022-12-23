@@ -1,5 +1,9 @@
-const genreService = require('../main/genre/services.js')
+const GenreService = require('./service')
 
+class GenreController {
+  constructor() {
 
+  }
+}
 
-module.exports = genreController
+module.exports = GenreController

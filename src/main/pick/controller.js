@@ -1,5 +1,8 @@
-const pickService = require('../main/pick/services.js')
+const PickService = require('./service')
+class PickController {
+  constructor() {
 
+  }
+}
 
-
-module.exports = pickController
+module.exports = PickController

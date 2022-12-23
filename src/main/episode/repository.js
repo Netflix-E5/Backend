@@ -1,1 +1,7 @@
-module.exports = episodeRepository;
+class EpisodeRepository {
+  constructor() {
+
+  }
+
+}
+module.exports = EpisodeRepository;

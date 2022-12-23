@@ -1,5 +1,10 @@
-const genreRepository = require('../main/genre/repository.js')
+const GenreRepository = require('./repository')
 
+class GenreService {
+  constructor() {
 
+  }
 
-module.exports = genreService
+}
+
+module.exports = GenreService

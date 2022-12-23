@@ -7,4 +7,4 @@ const GenreController = new genreController
 // router.post('/signup', UserController.signUp); // 회원 생성
 
 
-module.exports = GenreController;
+module.exports = router;
