@@ -17,10 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Views',
         foreignKey: 'userId',
       });
-      this.hasMany(models.Languages, {
-        as: 'Languages',
-        foreignKey: 'nation',
-      });
     }
   }
   Users.init(
@@ -52,15 +48,6 @@ module.exports = (sequelize, DataTypes) => {
       talkId: {
         type: DataTypes.STRING,
         allowNull: true, // ?
-      },
-      nation: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      plan: {
-        type: DataTypes.DATE,
-        allowNull: false, // 로그인만 하고 결제안했을 경우
-        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

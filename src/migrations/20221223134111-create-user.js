@@ -31,14 +31,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true, // ?
       },
-      nation: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      plan: {
-        type: Sequelize.DATE,
-        allowNull: true, // 로그인만 하고 결제안했을 경우
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -16,7 +16,7 @@ const routes = require('./routes/index.js');
 app.use(express.json());
 // app.use(cookieParser());
 // app.use(cors(corsOptions));
-app.use('/', routes);
+app.use('/api', routes);
 // app.use(errorLogger); // Error Handler
 // app.use(errorHandler); // Error Handler
 
