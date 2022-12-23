@@ -7,4 +7,4 @@ const ViewController = new viewController
 // router.post('/signup', UserController.signUp); // 회원 생성
 
 
-module.exports = ViewController;
+module.exports = router;

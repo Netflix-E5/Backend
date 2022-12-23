@@ -7,4 +7,4 @@ const RatingController = new ratingController
 // router.post('/signup', UserController.signUp); // 회원 생성
 
 
-module.exports = RatingController;
+module.exports = router;

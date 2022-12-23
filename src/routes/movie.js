@@ -6,5 +6,6 @@ const MovieController = new movieController
 
 // router.post('/signup', UserController.signUp); // 회원 생성
 
+router.get('/:postId', postsController.getPostById);
 
-module.exports = MovieController;
+module.exports = router;

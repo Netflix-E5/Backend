@@ -8,4 +8,4 @@ const UserController = new userController
 // router.post('/signup', UserController.signUp); // 회원 생성
 
 
-module.exports = userRouter;
+module.exports = router;
