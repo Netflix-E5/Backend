@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
+      timestamp: false,
       sequelize,
       modelName: 'Ratings',
     }
