@@ -9,9 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      movieId: {
+      contentsId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Contents',
+          key: 'contentsId',
+        }
+      },
+      rating: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
     });
   },

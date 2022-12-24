@@ -2,8 +2,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Movies', {
-      movieId: {
+    await queryInterface.createTable('Contents', {
+      contentsId: {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      contents: {
+      summary: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -29,7 +29,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      movieUrl: {
+      isNetflixOriginal: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      trailerUrl: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -46,6 +50,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Movies');
+    await queryInterface.dropTable('Contents');
   },
 };

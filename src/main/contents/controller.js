@@ -1,13 +1,13 @@
-const MovieService = require('./service')
+const ContentsService = require('./service')
 
-class MovieController {
+class ContentsController {
   constructor() {
-    this.movieService = new MovieService();
+    this.contentsService = new ContentsService();
   }
   // 컨텐츠 상세 정보 조회 API
   getAllMovie = async (req, res, next) => {
     try {
-      const movie = await this.movieService.getAllMovie({});
+      const movie = await this.contentsService.getAllMovie({});
       res.status(200).json({ data: movie });
     } catch (error) {
       next(error);
@@ -17,9 +17,9 @@ class MovieController {
   getOneMovie = async (req, res, next) => {
     try {
 
-      const { movieId } = req.params;
+      const { contentsId } = req.params;
 
-      const movie = await this.movieService.getOneMovie(movieId);
+      const movie = await this.contentsService.getOneMovie(contentsId);
       res.status(200).json({ data: movie });
 
     } catch (error) {
@@ -30,4 +30,4 @@ class MovieController {
   };
 
 }
-module.exports = MovieController
+module.exports = ContentsController

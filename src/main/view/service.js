@@ -1,9 +1,10 @@
 const ViewRepository = require('./repository')
 
-//const { Views } = require('./models');
 
 class ViewService {
-  viewRepository = new ViewRepository({ Views });
+  constructor() {
+    this.viewRepository = new ViewRepository();
+  }
 
   // 컨텐츠 랭킹 조회 API
   // viewById = async ({ viewId }) => {
@@ -11,7 +12,7 @@ class ViewService {
   //   return {
   //     viewId: viewMovie.viewId,
   //     userId: viewMovie.userId,
-  //     movieId: viewMovie.movieId,
+  //     contentsId: viewMovie.contentsId,
   //   };
   // };
 

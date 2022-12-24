@@ -1,13 +1,14 @@
-//const { Views } = require('./models');
+const { Views } = require('../../models');
 
-class ViewRepository {
-  constructor(viewModel) {
-    this.viewModel = viewModel;
+
+class ViewRepository extends Views {
+  constructor() {
+    super()
   }
 
   // 컨텐츠 랭킹 조회 API
   // viewById = async ({ viewId }) => {
-  //   const view = await this.viewModel.findByPk({ viewId });
+  //   const view = await this.viewModel.findByPk(viewId);
 
   //   if (viewId) {
   //     return await Views.viewId++

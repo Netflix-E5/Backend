@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Movies, { foreignKey: 'movieId' });
+      this.belongsTo(models.Contents, { foreignKey: 'contentsId' });
     }
   }
   Genres.init(
@@ -20,13 +20,31 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      movieId: {
+      contentsId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Contents',
+          key: 'contentsId',
+        }
+      },
+      genre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
     },
     {
-      timestamp: false,
+
       sequelize,
       modelName: 'Genres',
     }
