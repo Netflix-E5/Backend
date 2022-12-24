@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       release: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       director: {
@@ -32,6 +32,16 @@ module.exports = {
       movieUrl: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
     });
   },

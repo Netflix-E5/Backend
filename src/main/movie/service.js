@@ -3,21 +3,29 @@ const MovieRepository = require('./repository')
 //const { Movies } = require('./models');
 
 class MovieService {
-  movieRepository = new MovieService({ Movies });
+  constructor() {
+    this.movieRepository = new MovieRepository();
+  }
+
+  getAllMovie = async ({ }) => {
+    try {
+      const movie = await this.movieRepository.getAllMovie({});
+
+      return { data: movie };
+    } catch (error) {
+      throw error;
+    }
+  };
 
   // 컨텐츠 상세 정보 조회 API
-  // findMovieById = async ({ movieId }) => {
-  //   const findMovie = await this.movieRepository.findMovie({ movieId });
-  //   return {
-  //     movieId: findMovie.movieId,
-  //     title: findMovie.title,
-  //     contents: findMovie.contents,
-  //     release: findMovie.release,
-  //     director: findMovie.director,
-  //     actor: findMovie.actor,
-  //     movieUrl: findMovie.movieUrl,
-  //   };
-  // };
+  getOneMovie = async (movieId) => {
+    try {
+      return await this.movieRepository.getOneMovie(movieId);
+    } catch (error) {
+      throw error;
+    }
+  };
+
 }
 
 module.exports = MovieService
