@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-//const authMiddleware = require('../middlewares/auth-middleware.js')
-const userController = require('../main/user/controller.js');
-const UserController = new userController
+const UserController = require('../main/user/controller.js');
+const userController = new UserController();
 
 
-// router.post('/signup', UserController.signUp); // 회원 생성
+router.post('/signup', userController.createUser); // 회원 생성
+router.post('/login',userController.loginUser);
 
 
 module.exports = router;
