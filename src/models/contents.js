@@ -21,14 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Episodes',
         foreignKey: 'contentsId',
       });
-      this.hasMany(models.Ratings, {
-        as: 'Ratings',
-        foreignKey: 'contentsId',
-      });
-      this.hasMany(models.Genres, {
-        as: 'Genres',
-        foreignKey: 'contentsId',
-      });
     }
   }
   Contents.init(
@@ -44,6 +36,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       summary: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      rating: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      genre: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -64,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       trailerUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      thumbnailUrl: {
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -17,6 +17,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      rating: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      genre: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       release: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -34,6 +42,10 @@ module.exports = {
         allowNull: false,
       },
       trailerUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      thumbnailUrl: {
         type: Sequelize.STRING,
         allowNull: false,
       },

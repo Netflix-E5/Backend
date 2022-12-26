@@ -7,13 +7,13 @@ class ViewRepository extends Views {
   }
 
   // 컨텐츠 랭킹 조회 API
-  // viewById = async ({ viewId }) => {
-  //   const view = await this.viewModel.findByPk(viewId);
+  viewById = async ({ viewId }) => {
+    const view = await this.viewModel.findByPk(viewId);
 
-  //   if (viewId) {
-  //     return await Views.viewId++
-  //   }
-  // }
+    if (viewId) {
+      return await Views.viewId++
+    }
+  }
 
 };
 

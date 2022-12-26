@@ -7,14 +7,12 @@ class ViewService {
   }
 
   // 컨텐츠 랭킹 조회 API
-  // viewById = async ({ viewId }) => {
-  //   const viewMovie = await this.viewRepository.viewMovie({ viewId });
-  //   return {
-  //     viewId: viewMovie.viewId,
-  //     userId: viewMovie.userId,
-  //     contentsId: viewMovie.contentsId,
-  //   };
-  // };
+  viewById = async ({ viewId }) => {
+    const viewMovie = await this.viewRepository.viewMovie({ viewId });
+    return {
+      contentsId: viewMovie.contentsId,
+    };
+  };
 
 }
 
