@@ -1,11 +1,11 @@
 const { Contents, sequelize } = require('../../models');
-
+//
 class PickRepository {
   constructor(PickModel) {
     this.pickModel = PickModel;
   }
 
-  pickedMovies = async (contentsId, userId) => {
+  pickedContents = async (contentsId, userId) => {
     const [_, isPicked] = await this.pickModel.findOrCreate({
       where: { contentsId, userId },
       default: { contentsId, userId },

@@ -1,4 +1,3 @@
-const { Contents, sequelize } = require('../../models');
 class EpisodeRepository {
   constructor(EpisodeModel) {
     this.episodeModel = EpisodeModel;

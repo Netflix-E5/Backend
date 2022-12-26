@@ -4,14 +4,14 @@ const { InvalidParamsError } = require('../../exceptions/index.exception');
 class PickController {
   pickService = new PickService();
 
-  pickedMovies = async (req, res, next) => {
+  pickedContents = async (req, res, next) => {
     try {
       const { contentsId } = req.params;
       const userId = 1;
 
       if (!contentsId || !userId) throw new InvalidParamsError();
 
-      const isPicked = await this.pickService.pickedMovies(contentsId, userId);
+      const isPicked = await this.pickService.pickedContents(contentsId, userId);
 
       if (!isPicked)
         return res.status(201).json({ message: '찜하기를 취소하셨습니다.' });

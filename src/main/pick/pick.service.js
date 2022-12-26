@@ -5,7 +5,7 @@ const { ValidationError } = require('../../exceptions/index.exception.js');
 class PickService {
   pickRepository = new PickRepository(Picks);
 
-  pickedMovies = async (contentsId, userId) => {
+  pickedContents = async (contentsId, userId) => {
     const isPicked = await this.pickRepository.pickedMovies(contentsId, userId);
 
     return isPicked;
