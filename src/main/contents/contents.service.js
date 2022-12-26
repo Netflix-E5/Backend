@@ -1,4 +1,4 @@
-const ContentsRepository = require('./repository')
+const ContentsRepository = require('./contents.repository')
 
 
 class ContentsService {

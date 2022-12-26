@@ -13,10 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Picks',
         foreignKey: 'userId',
       });
-      this.hasMany(models.Views, {
-        as: 'Views',
-        foreignKey: 'userId',
-      });
     }
   }
   Users.init(

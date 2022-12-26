@@ -1,4 +1,4 @@
-const ContentsService = require('./service')
+const ContentsService = require('./contents.service')
 
 class ContentsController {
   constructor() {
