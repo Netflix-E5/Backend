@@ -1,6 +1,4 @@
-const { Views, Contents } = require('../../models');
-// const { Op } = require('../../sequelize')
-
+const { Views, Contents, sequelize } = require('../../models');
 
 class ViewRepository extends Views {
   constructor() {
@@ -19,8 +17,26 @@ class ViewRepository extends Views {
   // 컨텐츠 랭킹 조회 API
   viewContents = async ({ }) => {
     const counts = await Views.findAll({
-      row: true,
-      attributes: ['contentsId']
+      include: [
+        {
+          model: Contents,
+          attributes: []
+        }
+      ],
+      raw: true,
+      attributes: ['contentsId',
+        [sequelize.col('Content.title'), 'title'],
+        [sequelize.col('Content.summary'), 'summary'],
+        [sequelize.col('Content.rating'), 'rating'],
+        [sequelize.col('Content.genre'), 'genre'],
+        [sequelize.col('Content.release'), 'release'],
+        [sequelize.col('Content.director'), 'director'],
+        [sequelize.col('Content.actor'), 'actor'],
+        [sequelize.col('Content.isNetflixOriginal'), 'isNetflixOriginal'],
+        [sequelize.col('Content.trailerUrl'), 'trailerUrl'],
+        [sequelize.col('Content.thumbnailUrl'), 'thumbnailUrl'],
+      ]
+
     });
 
     // 컨텐츠 조회 카운팅
