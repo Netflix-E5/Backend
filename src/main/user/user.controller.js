@@ -1,4 +1,4 @@
-const UserService = require('./service.js')
+const UserService = require('./user.service.js')
 const joi = require('joi');
 const { InvalidParamsError } = require('../../exceptions/index.exception');
 
@@ -24,7 +24,18 @@ class UserController{
     loginUser = async (req, res, next) => {
         try {
             const { email, password } = await loginSchema.validateAsync(req.body);
-            await this.userService.loginUser({email,password})
+            const { refreshToken,accessToken } = await this.userService.loginUser({email,password})
+            const [value, key] = refreshToken.split(' ');
+
+            if(!req.session.refreshToken){
+                req.session.refreshToken = {};
+                req.session.refreshToken[key] = value;
+            }else{
+                req.session.refreshToken[key] = value;
+            }
+
+            res.setHeader('Authorization',`Bearer ${accessToken}`).json({message: '로그인 성공',});
+
         }catch (error){
             next(error);
         }
@@ -42,6 +53,9 @@ class UserController{
         } catch (error) {
             next(error);
         }
+    }
+    test = async (req,res,next) => {
+        res.json({message:'test!'})
     }
 }
 

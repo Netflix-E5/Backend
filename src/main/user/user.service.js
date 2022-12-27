@@ -1,8 +1,9 @@
-const UserRepository = require('./repository.js');
+const UserRepository = require('./user.repository.js');
 const { Users } = require('../../models');
 const { ValidationError } = require('../../exceptions/index.exception');
 const encrypt = require('../../util/encrypt.js');
 const joi = require('joi');
+const jwt = require('jsonwebtoken');
 
 const schema = (eq,errorMessage) => {
     return joi.string().invalid(eq).error(new ValidationError(errorMessage));
@@ -20,7 +21,10 @@ class UserService{
         if(!findUser) throw new ValidationError("아이디 또는 비밀번호를 잘못 입력했습니다.")
 
         //리프레시 토큰 생성하기
+        const accessToken = jwt.sign({ userId: findUser.userId, userNickname: findUser.nickname }, process.env.TOKEN_SECRET, { expiresIn: '10s' });
+        const refreshToken = `${findUser.userId} ${jwt.sign({}, process.env.TOKEN_SECRET, { expiresIn: '7d' })}`;
 
+        return {refreshToken,accessToken}
     }
 
     createUser = async ({email, password, nickname}) => {
