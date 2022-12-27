@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Users, { foreignKey: 'userId' });
-      this.belongsTo(models.Movies, { foreignKey: 'movieId' });
+      this.belongsTo(models.Contents, { foreignKey: 'contentsId' });
     }
   }
   Picks.init(
@@ -24,10 +24,18 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'userId',
+        },
       },
-      movieId: {
+      contentsId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Contents',
+          key: 'contentsId',
+        },
       },
       createdAt: {
         allowNull: false,
