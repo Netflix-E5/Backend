@@ -7,9 +7,11 @@ const episodeRouter = require('./episode.js');
 const pickRouter = require('./pick.js');
 
 router.use('/users', userRouter);
-router.use('/episode', episodeRouter);
-router.use('/pick', pickRouter);
-router.use('/contents', contentsRouter);
-router.use('/view', viewRouter);
+router.use('/contents', [
+  viewRouter,
+  pickRouter,
+  episodeRouter,
+  contentsRouter,
+]);
 
 module.exports = router;
