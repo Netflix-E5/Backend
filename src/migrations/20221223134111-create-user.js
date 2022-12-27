@@ -25,11 +25,11 @@ module.exports = {
       },
       talk: {
         type: Sequelize.STRING,
-        allowNull: true, // ?
+        allowNull: true,
       },
       talkId: {
         type: Sequelize.STRING,
-        allowNull: true, // ?
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
