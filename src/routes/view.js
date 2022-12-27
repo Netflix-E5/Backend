@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const viewController = require('../main/view/controller.js');
-const ViewController = new viewController
+const ViewController = require('../main/view/view.controller.js');
+const viewController = new ViewController
 
 
-// router.post('/signup', UserController.signUp); // 회원 생성
-
+router.post('/:contentsId', viewController.clickView); // 컨텐츠 조회 레코딩 API
+router.get('/', viewController.viewContents); // 컨텐츠 랭킹 조회 API
 
 module.exports = router;

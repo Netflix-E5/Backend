@@ -1,8 +1,9 @@
 require('dotenv').config();
 
-// const cors = require('cors');
+const cors = require('cors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const app = express();
 const routes = require('./routes/index.js');
@@ -22,6 +23,16 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+    session({
+      secret: "countingViews",
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+      }
+    })
+);
+
 // app.use(cors(corsOptions));
 app.use('/api', routes);
 app.use(errorLogger); // Error Handler
