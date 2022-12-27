@@ -9,14 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'userId',
-        },
-      },
       contentsId: {
         type: Sequelize.INTEGER,
         allowNull: false,

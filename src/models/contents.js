@@ -21,14 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Episodes',
         foreignKey: 'contentsId',
       });
-      this.hasMany(models.Ratings, {
-        as: 'Ratings',
-        foreignKey: 'contentsId',
-      });
-      this.hasMany(models.Genres, {
-        as: 'Genres',
-        foreignKey: 'contentsId',
-      });
     }
   }
   Contents.init(
