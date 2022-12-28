@@ -32,6 +32,12 @@ app.use(
       }
     })
 );
+app.use(cors({ exposedHeaders: ['Authorization'] }));
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
 
 // app.use(cors(corsOptions));
 app.use('/api', routes);
