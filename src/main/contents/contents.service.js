@@ -24,11 +24,11 @@ class ContentsService {
       throw error;
     }
   };
-}
+
 
 //등급별 조회
 
-getRating = async() => {
+getAllRating = async() => {
 
  
   const all = 'ALL'
@@ -49,28 +49,29 @@ return [{rating:twelve,movies:ratingTwelve},{rating:fifteen,movies:ratingFifteen
        
 //장르별 조회
 
-getGenre = async() => {
+getAllGenre = async() => {
 
-const teenager = '청소년'
-const animation = '애니'
+const Teenager = '청소년'
+const Animation = '애니'
 const Comic = '코미디'
 const Romance = '로맨스'
 const Action ='액션'
 const Thriller ='스릴러'  
 
-  const genreTeenager = await this.contentsRepository.getAllRating(teenager);
-  const genreAnimation = await this.contentsRepository.getAllRating(animation);
-  const genreComic= await this.contentsRepository.getAllRating(Comic);
-  const genreRomance = await this.contentsRepository.getAllRating(Romance);
-  const genreAction= await this.contentsRepository.getAllRating(Action);
-  const genreThriller= await this.contentsRepository.getAllRating(Thriller);
+  const genreTeenager = await this.contentsRepository.getAllGenre(Teenager);
+  const genreAnimation = await this.contentsRepository.getAllGenre(Animation);
+  const genreComic= await this.contentsRepository.getAllGenre(Comic);
+  const genreRomance = await this.contentsRepository.getAllGenre(Romance);
+  const genreAction= await this.contentsRepository.getAllGenre(Action);
+  const genreThriller= await this.contentsRepository.getAllGenre(Thriller);
 
 
 
-  return [{genre:teenager,movies:genreTeenager},{genre:animation,movies:genreAnimation},{genre:Comic,movies:genreComic},{genre:Romance,movies:genreRomance},{genre:Action,movies:genreAction},{genre:Thriller,movies:genreThriller},]
+  return [{genre:Teenager,movies:genreTeenager},{genre:Animation,movies:genreAnimation},{genre:Comic,movies:genreComic},{genre:Romance,movies:genreRomance},{genre:Action,movies:genreAction},{genre:Thriller,movies:genreThriller},]
 
 };
 
+}
 
 
 module.exports = ContentsService;
