@@ -1,4 +1,5 @@
 const { Contents, sequelize } = require('../../models');
+const {Op} = require("sequelize");
 //
 class PickRepository {
   constructor(PickModel) {
@@ -38,5 +39,14 @@ class PickRepository {
       ],
     });
   };
+
+  getCountPick = async (userId, contentsId) => {
+    return this.pickModel.findAndCountAll({
+      where: {
+        [Op.and]:[userId, {contentsId:contentsId}]
+      },
+      raw:true
+    });
+  }
 }
 module.exports = PickRepository;
