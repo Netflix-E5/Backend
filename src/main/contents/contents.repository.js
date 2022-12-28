@@ -27,7 +27,7 @@ class ContentsRepository extends Contents {
 
 
 
-getRating = async (rating) => {
+getAllRating = async (rating) => {
   return Contents.findAll({
   where : {rating},
   attributes : ['contentsId','title', 'summary', 'rating','genre', 'release','director','actor','isNetflixOriginal' ,
@@ -38,7 +38,7 @@ getRating = async (rating) => {
   });
  }
 
- getGenre = async(genre) => {
+ getAllGenre = async(genre) => {
   return Contents.findAll({
     where : {genre},
     attributes : ['contentsId','title', 'summary', 'rating','genre', 'release','director','actor','isNetflixOriginal' ,
