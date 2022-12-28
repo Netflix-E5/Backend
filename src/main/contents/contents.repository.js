@@ -1,30 +1,60 @@
 const { Contents } = require('../../models');
 
+
 class ContentsRepository extends Contents {
-    constructor() {
-        super()
+  constructor() {
+    super();
+  }
+
+  getAllMovie = async () => {
+    try {
+      const movie = await Contents.findAll();
+
+      return movie;
+    } catch (error) {
+      throw error;
     }
+  };
 
-    getAllMovie = async () => {
-        try {
-            const movie = await Contents.findAll()
+  // 컨텐츠 상세 정보 조회 API
+  getOneMovie = async (contentsId) => {
+    try {
+      return await Contents.findByPk(contentsId);
+    } catch (error) {
+      throw error;
+    }
+  };
 
-            return movie;
-        } catch (error) {
-            throw error;
-        }
-    };
 
 
-    // 컨텐츠 상세 정보 조회 API
-    getOneMovie = async (contentsId) => {
+getRating = async (rating) => {
+  return Contents.findAll({
+  where : {rating},
+  attributes : ['contentsId','title', 'summary', 'rating','genre', 'release','director','actor','isNetflixOriginal' ,
+    'trailerUrl' ,'thumbnailUrl' ,],
+     raw : true
+  
+  
+  });
+ }
 
-        try {
-            return await Contents.findByPk(contentsId);
-        } catch (error) {
-            throw error;
-        }
-    };
-}
+ getGenre = async(genre) => {
+  return Contents.findAll({
+    where : {genre},
+    attributes : ['contentsId','title', 'summary', 'rating','genre', 'release','director','actor','isNetflixOriginal' ,
+    'trailerUrl' ,'thumbnailUrl' ,],
+     raw : true
+
+  })
+
+ }
+
+} 
+
+
+
+
+
+
 
 module.exports = ContentsRepository;
