@@ -20,7 +20,7 @@ class ContentsRepository extends Contents {
   getOneMovie = async (contentsId) => {
     try {
       // return await Contents.findByPk(contentsId);
-      return Contents.findAll({
+      return Contents.findOne({
         where: { contentsId },
         attributes: ['contentsId', 'title', 'summary', 'rating', 'genre', 'release', 'director', 'actor', 'isNetflixOriginal',
           'trailerUrl', 'thumbnailUrl',],
