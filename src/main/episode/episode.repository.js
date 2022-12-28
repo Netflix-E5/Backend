@@ -10,6 +10,12 @@ class EpisodeRepository {
       attributes: ['episodeId', 'runtime', 'summary', 'episodeUrl', 'title'],
     });
   };
+
+  getCountEpisodes = async (contentsId) => {
+    return this.episodeModel.findAndCountAll({
+      where: {contentsId}
+    });
+  }
 }
 
 module.exports = EpisodeRepository;

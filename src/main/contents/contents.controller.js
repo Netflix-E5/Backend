@@ -9,7 +9,7 @@ class ContentsController {
   constructor() {
     this.contentsService = new ContentsService();
   }
-  // 컨텐츠 상세 정보 조회 API
+  // 컨텐츠 상세 정보 조회 API //
   getAllMovie = async (req, res, next) => {
     try {
       const movie = await this.contentsService.getAllMovie({});
@@ -35,26 +35,26 @@ class ContentsController {
   //등급별 조회
   getRating = async (req, res, next) => {
     try {
-     
+
       const Rating = await this.contentsService.getAllRating();
-     
-         
-      res.status(200).json({ data : Rating });
+
+
+      res.status(200).json({ data: Rating });
     } catch (error) {
-     
- next(error);
+
+      next(error);
     }
   };
 
 
-//장르별 조회
-    getGenre = async (req, res, next) => {
+  //장르별 조회
+  getGenre = async (req, res, next) => {
     try {
-     
+
       const Genre = await this.contentsService.getAllGenre();
-      
-              
-      res.status(200).json({  data : Genre  });
+
+
+      res.status(200).json({ data: Genre });
     } catch (error) {
       next(error);
     }
