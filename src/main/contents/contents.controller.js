@@ -1,4 +1,6 @@
 const ContentsService = require('./contents.service');
+const { InvalidParamsError } = require('../../exceptions/index.exception');
+
 
 const {
   ValidationError,
@@ -21,7 +23,7 @@ class ContentsController {
 
   getOneMovie = async (req, res, next) => {
     try {
-      const { contentsId } = req.params;
+      const { contentsId } = req.locals;
 
       const movie = await this.contentsService.getOneMovie(contentsId);
       res.status(200).json({ data: movie });
@@ -36,7 +38,10 @@ class ContentsController {
   getRating = async (req, res, next) => {
     try {
 
-      const Rating = await this.contentsService.getAllRating();
+      // const { userId } = req.locals
+      // if (!userId) throw new InvalidParamsError();
+
+      const Rating = await this.contentsService.getRating();
 
 
       res.status(200).json({ data: Rating });
@@ -51,7 +56,10 @@ class ContentsController {
   getGenre = async (req, res, next) => {
     try {
 
-      const Genre = await this.contentsService.getAllGenre();
+      // const { userId } = req.locals;
+      // if (!userId) throw new InvalidParamsError();
+
+      const Genre = await this.contentsService.getGenre();
 
 
       res.status(200).json({ data: Genre });

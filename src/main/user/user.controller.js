@@ -6,7 +6,7 @@ const schema = joi.object({
     email: joi.string().required(),
     password: joi.string().required(),
     nickname: joi.string().required()
-}).error( new InvalidParamsError());
+}).error(new InvalidParamsError());
 
 const emailSchema = joi.string().pattern(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i).required().error(new Error("이메일 형식으로 입력해 주세요."))
 const passwordSchema = joi.string().pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/i).required().error(new Error("비밀번호 양식이 틀렸습니다."))
@@ -14,9 +14,9 @@ const passwordSchema = joi.string().pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*
 const loginSchema = joi.object({
     email: joi.string().required(),
     password: joi.string().required()
-}).error( new InvalidParamsError());
+}).error(new InvalidParamsError());
 
-class UserController{
+class UserController {
     constructor() {
         this.userService = new UserService();
     }

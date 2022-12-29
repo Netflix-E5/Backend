@@ -1,12 +1,12 @@
 const ViewService = require('./view.service')
-const session = require('../../app.js');
+const { InvalidParamsError } = require('../../exceptions/index.exception');
+
 class ViewController {
     constructor() {
         this.viewService = new ViewService();
     }
 
     // 컨텐츠 조회 레코딩 API
-
     clickView = async (req, res, next) => {
         try {
             const { contentsId } = req.params
@@ -20,6 +20,9 @@ class ViewController {
 
     // 컨텐츠 랭킹 조회 API
     viewContents = async (req, res, next) => {
+
+        const { userId } = req.locals
+        if (!userId) throw new InvalidParamsError();
 
         const view = await this.viewService.viewContents({});
         return res.status(200).json({ data: view })
