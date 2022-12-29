@@ -7,7 +7,7 @@ class PickController {
   pickedContents = async (req, res, next) => {
     try {
       const { contentsId } = req.params;
-      const userId = 1;
+      const userId = res.locals.user;
 
       if (!contentsId || !userId) throw new InvalidParamsError();
 
@@ -27,7 +27,7 @@ class PickController {
 
   getPickedList = async (req, res, next) => {
     try {
-      const userId = 1;
+      const userId = res.locals.user;
 
       if (!userId) throw new InvalidParamsError();
 
