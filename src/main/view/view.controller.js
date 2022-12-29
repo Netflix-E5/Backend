@@ -21,7 +21,7 @@ class ViewController {
     // 컨텐츠 랭킹 조회 API
     viewContents = async (req, res, next) => {
 
-        const { userId } = req.locals
+        const { userId } = res.locals.user;
         if (!userId) throw new InvalidParamsError();
 
         const view = await this.viewService.viewContents({userId});
