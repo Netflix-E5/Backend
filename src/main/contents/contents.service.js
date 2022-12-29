@@ -33,9 +33,7 @@ class ContentsService {
 
   //등급별 조회
 
-  getRating = async () => {
-    const userId = {userId:1}
-
+  getRating = async ({userId}) => {
     const all = 'ALL'
     const twelve = '12'
     const fifteen = '15'
@@ -85,7 +83,7 @@ class ContentsService {
 
   //장르별 조회
 
-  getGenre = async () => {
+  getGenre = async ({userId}) => {
 
     const teenager = '청소년'
     const animation = '애니'
@@ -93,7 +91,6 @@ class ContentsService {
     const Romance = '로맨스'
     const Action = '액션'
     const Thriller = '스릴러'
-    const userId = {userId:1}
 
     // 청소년
     const genreTeenagerResult = await this.contentsRepository.getAllGenre(teenager);

@@ -25,7 +25,7 @@ class ViewService {
     // 유저 
 
     // 컨텐츠 랭킹 조회 API
-    viewContents = async ({ }) => {
+    viewContents = async ({userId}) => {
         // const userId = { userId: '1' }
         const viewContents = await this.viewRepository.viewContents({});
         // const episodes = await 에피소드 데이터베이스 전체;

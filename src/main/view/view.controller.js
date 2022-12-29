@@ -24,7 +24,7 @@ class ViewController {
         const { userId } = req.locals
         if (!userId) throw new InvalidParamsError();
 
-        const view = await this.viewService.viewContents({});
+        const view = await this.viewService.viewContents({userId});
         return res.status(200).json({ data: view })
     }
 
