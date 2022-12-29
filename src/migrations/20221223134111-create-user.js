@@ -25,19 +25,11 @@ module.exports = {
       },
       talk: {
         type: Sequelize.STRING,
-        allowNull: true, // ?
+        allowNull: true,
       },
       talkId: {
         type: Sequelize.STRING,
-        allowNull: true, // ?
-      },
-      nation: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      plan: {
-        type: Sequelize.DATE,
-        allowNull: true, // 로그인만 하고 결제안했을 경우
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

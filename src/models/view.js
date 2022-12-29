@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Users, { foreignKey: 'userId' });
-      this.belongsTo(models.Movies, { foreignKey: 'movieId' });
+      this.belongsTo(models.Contents, { foreignKey: 'contentsId' });
     }
   }
   Views.init(
@@ -21,13 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      userId: {
+      contentsId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      movieId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+        references: {
+          model: 'Contents',
+          key: 'contentsId',
+        },
       },
       createdAt: {
         allowNull: false,

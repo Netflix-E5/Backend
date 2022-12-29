@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const episodeController = require('../main/episode/controller.js');
-const EpisodeController = new episodeController
+const EpisodeController = require('../main/episode/episode.controller.js');
+const episodeController = new EpisodeController();
+const authMiddleware = require('../middlewares/auth.middleware.js')
 
+router.get('/:contentsId/season/:season',authMiddleware, episodeController.getAllEpisodes);
 
-// router.post('/signup', UserController.signUp); // 회원 생성
-
-
-module.exports = EpisodeController;
+module.exports = router;

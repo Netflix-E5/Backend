@@ -9,13 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      userId: {
+      contentsId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      },
-      movieId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        references: {
+          model: 'Contents',
+          key: 'contentsId',
+        },
       },
       createdAt: {
         allowNull: false,

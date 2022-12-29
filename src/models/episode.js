@@ -9,32 +9,58 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Movies, { foreignKey: 'movieId' });
+      this.belongsTo(models.Contents, { foreignKey: 'contentsId' });
     }
   }
   Episodes.init(
     {
-      episodeId: {
+      Id: {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      movieId: {
+      episodeId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      contentsId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Contents',
+          key: 'contentsId',
+        },
+      },
+      season: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      summary: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       runtime: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      story: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       episodeUrl: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
     },
     {

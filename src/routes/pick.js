@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const pickController = require('../main/pick/controller.js');
-const PickController = new pickController
+const pickController = require('../main/pick/pick.controller');
+const authMiddleware = require('../middlewares/auth.middleware');
+const PickController = new pickController();
 
+router.get('/picklist', authMiddleware, PickController.getPickedList);
+router.put('/:contentsId/pick', authMiddleware, PickController.pickedContents);
 
-// router.post('/signup', UserController.signUp); // 회원 생성
-
-
-module.exports = PickController;
+module.exports = router;
