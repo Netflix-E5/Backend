@@ -9,6 +9,6 @@ const userController = new UserController();
 
 router.post('/signup', authLoginMiddleware,userController.createUser); // 회원 생성
 router.post('/login',authLoginMiddleware,userController.loginUser);
-router.put('/getToken',updateToken);
+router.get('/getToken',updateToken);
 
 module.exports = router;
