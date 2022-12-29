@@ -33,14 +33,22 @@ class ContentsRepository extends Contents {
   };
 
 
-
-  getRating = async (rating) => {
+  getAllRating = async (rating) => {
     return Contents.findAll({
       where: { rating },
       attributes: ['contentsId', 'title', 'summary', 'rating', 'genre', 'release', 'director', 'actor', 'isNetflixOriginal',
         'trailerUrl', 'thumbnailUrl',],
       raw: true
 
+    });
+  }
+
+  getAllGenre = async (genre) => {
+    return Contents.findAll({
+      where: { genre },
+      attributes: ['contentsId', 'title', 'summary', 'rating', 'genre', 'release', 'director', 'actor', 'isNetflixOriginal',
+        'trailerUrl', 'thumbnailUrl',],
+      raw: true
 
     });
   }
@@ -57,11 +65,5 @@ class ContentsRepository extends Contents {
   }
 
 }
-
-
-
-
-
-
 
 module.exports = ContentsRepository;

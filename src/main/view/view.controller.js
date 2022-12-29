@@ -7,7 +7,6 @@ class ViewController {
     }
 
     // 컨텐츠 조회 레코딩 API
-
     clickView = async (req, res, next) => {
         try {
             const { contentsId } = req.params
