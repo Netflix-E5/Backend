@@ -38,10 +38,10 @@ class ContentsController {
   getRating = async (req, res, next) => {
     try {
 
-      const { userId } = req.locals
-      if (!userId) throw new InvalidParamsError();
+      // const { userId } = req.locals
+      // if (!userId) throw new InvalidParamsError();
 
-      const Rating = await this.contentsService.getAllRating();
+      const Rating = await this.contentsService.getRating();
 
 
       res.status(200).json({ data: Rating });
@@ -56,10 +56,10 @@ class ContentsController {
   getGenre = async (req, res, next) => {
     try {
 
-      const { userId } = req.locals
-      if (!userId) throw new InvalidParamsError();
+      // const { userId } = req.locals;
+      // if (!userId) throw new InvalidParamsError();
 
-      const Genre = await this.contentsService.getAllGenre();
+      const Genre = await this.contentsService.getGenre();
 
 
       res.status(200).json({ data: Genre });

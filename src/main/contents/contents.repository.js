@@ -39,7 +39,6 @@ class ContentsRepository extends Contents {
       attributes: ['contentsId', 'title', 'summary', 'rating', 'genre', 'release', 'director', 'actor', 'isNetflixOriginal',
         'trailerUrl', 'thumbnailUrl',],
       raw: true
-
     });
   }
 

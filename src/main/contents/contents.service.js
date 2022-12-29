@@ -1,9 +1,15 @@
 const ContentsRepository = require('./contents.repository');
 const { ValidationError } = require('../../exceptions/index.exception');
+const EpisodeRepository = require("../episode/episode.repository");
+const {Episodes, Picks} = require("../../models");
+const PickRepository = require("../pick/pick.repository");
 
 class ContentsService {
   constructor() {
     this.contentsRepository = new ContentsRepository();
+    this.episodeRepository = new EpisodeRepository(Episodes);
+    this.pickRepository = new PickRepository(Picks);
+
   }
 
   getAllMovie = async ({ }) => {
@@ -28,7 +34,7 @@ class ContentsService {
   //등급별 조회
 
   getRating = async () => {
-
+    const userId = {userId:1}
 
     const all = 'ALL'
     const twelve = '12'
@@ -36,72 +42,43 @@ class ContentsService {
     const eighteen = '18'
 
     // all
-    const ratingAll = await this.contentsRepository.getAllRating(all);
+    const ratingAllResult = await this.contentsRepository.getAllRating(all);
 
-    const uniqueArr1 = ratingAll.filter((element, index) => {
-      return ratingAll.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr1.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr1.sort((a, b) => b.count - a.count);
+    let ratingAll = ratingAllResult;
+    if(ratingAll.length > 0){
+      ratingAll = await this.addCount(ratingAllResult,userId);
+    }
 
     // 12세
-    const ratingTwelve = await this.contentsRepository.getAllRating(twelve);
+    const ratingTwelveResult = await this.contentsRepository.getAllRating(twelve);
 
-    const uniqueArr2 = ratingTwelve.filter((element, index) => {
-      return ratingTwelve.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr2.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr2.sort((a, b) => b.count - a.count);
+    let ratingTwelve = ratingTwelveResult;
+    if(ratingTwelve.length > 0){
+      ratingTwelve = await this.addCount(ratingTwelveResult,userId);
+    }
 
 
     // 15세
-    const ratingFifteen = await this.contentsRepository.getAllRating(fifteen);
+    const ratingFifteenResult = await this.contentsRepository.getAllRating(fifteen);
 
-    const uniqueArr3 = ratingFifteen.filter((element, index) => {
-      return ratingFifteen.indexOf(element) === index;
-    });
+    let ratingFifteen = ratingFifteenResult;
+    if(ratingFifteen.length > 0){
+      ratingFifteen = await this.addCount(ratingFifteenResult,userId);
+    }
 
-    await Promise.all(uniqueArr3.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr3.sort((a, b) => b.count - a.count);
 
     // 18세
-    const ratingEighteen = await this.contentsRepository.getAllRating(eighteen);
+    const ratingEighteenResult = await this.contentsRepository.getAllRating(eighteen);
 
-    const uniqueArr4 = ratingEighteen.filter((element, index) => {
-      return ratingEighteen.indexOf(element) === index;
-    });
+    let ratingEighteen = ratingEighteenResult;
+    if(ratingEighteen.length > 0){
+      ratingEighteen = await this.addCount(ratingEighteenResult,userId);
+    }
 
-    await Promise.all(uniqueArr4.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr4.sort((a, b) => b.count - a.count);
-
-
-
-    return [{ rating: twelve, movies: uniqueArr2 },
-    { rating: fifteen, movies: uniqueArr3 },
-    { rating: eighteen, movies: uniqueArr4 },
-    { rating: all, movies: uniqueArr1 }]
+    return [{ rating: twelve, movies: ratingTwelve },
+    { rating: fifteen, movies: ratingFifteen },
+    { rating: eighteen, movies: ratingEighteen },
+    { rating: all, movies: ratingAll }]
 
   };
 
@@ -116,109 +93,77 @@ class ContentsService {
     const Romance = '로맨스'
     const Action = '액션'
     const Thriller = '스릴러'
+    const userId = {userId:1}
 
     // 청소년
-    const genreTeenager = await this.contentsRepository.getAllRating(teenager);
+    const genreTeenagerResult = await this.contentsRepository.getAllGenre(teenager);
 
-    const uniqueArr5 = genreTeenager.filter((element, index) => {
-      return genreTeenager.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr5.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr5.sort((a, b) => b.count - a.count);
-
+    let genreTeenager = genreTeenagerResult;
+    if(genreTeenagerResult.length > 0){
+      genreTeenager = await this.addCount(genreTeenagerResult,userId);
+    }
 
     // 애니
-    const genreAnimation = await this.contentsRepository.getAllRating(animation);
+    const genreAnimationResult = await this.contentsRepository.getAllGenre(animation);
 
-    const uniqueArr6 = genreAnimation.filter((element, index) => {
-      return genreAnimation.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr6.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr6.sort((a, b) => b.count - a.count);
+    let genreAnimation = genreAnimationResult;
+    if(genreAnimationResult.length > 0){
+      genreAnimation = await this.addCount(genreAnimationResult,userId);
+    }
 
     // 코믹
-    const genreComic = await this.contentsRepository.getAllRating(Comic);
+    const genreComicResult = await this.contentsRepository.getAllGenre(Comic);
 
-    const uniqueArr7 = genreComic.filter((element, index) => {
-      return genreComic.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr7.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr7.sort((a, b) => b.count - a.count);
+    let genreComic = genreComicResult;
+    if(genreComicResult.length > 0){
+      genreComic = await this.addCount(genreComicResult,userId);
+    }
 
     // 로맨스
-    const genreRomance = await this.contentsRepository.getAllRating(Romance);
+    const genreRomanceResult = await this.contentsRepository.getAllGenre(Romance);
 
-    const uniqueArr8 = genreRomance.filter((element, index) => {
-      return genreRomance.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr8.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr8.sort((a, b) => b.count - a.count);
-
+    let genreRomance = genreRomanceResult;
+    if(genreRomance.length > 0){
+      genreRomance = await this.addCount(genreRomanceResult,userId);
+    }
 
     // 액션
-    const genreAction = await this.contentsRepository.getAllRating(Action);
+    const genreActionResult = await this.contentsRepository.getAllGenre(Action);
 
-    const uniqueArr9 = genreAction.filter((element, index) => {
-      return genreAction.indexOf(element) === index;
-    });
-
-    await Promise.all(uniqueArr9.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr9.sort((a, b) => b.count - a.count);
+    let genreAction = genreActionResult;
+    if(genreAction.length > 0){
+      genreAction = await this.addCount(genreActionResult,userId);
+    }
 
     // 스릴러
-    const genreThriller = await this.contentsRepository.getAllRating(Thriller);
+    const genreThrillerResult = await this.contentsRepository.getAllGenre(Thriller);
 
-    const uniqueArr0 = genreThriller.filter((element, index) => {
-      return genreThriller.indexOf(element) === index;
-    });
+    let genreThriller = genreThrillerResult;
+    if(genreThriller.length > 0){
+      genreThriller = await this.addCount(genreThrillerResult,userId);
+    }
 
-    await Promise.all(uniqueArr0.map(async (data) => {
-      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
-      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
-      pick['count'] ? data['pick'] = true : data['pick'] = false;
-      data['episodeCount'] = episodeCount['count'];
-    }))
-    uniqueArr0.sort((a, b) => b.count - a.count);
-
-
-    return [{ genre: teenager, movies: uniqueArr5 },
-    { genre: animation, movies: uniqueArr6 },
-    { genre: Comic, movies: uniqueArr7 },
-    { genre: Romance, movies: uniqueArr8 },
-    { genre: Action, movies: uniqueArr9 },
-    { genre: Thriller, movies: uniqueArr0 },]
+    return [{ genre: teenager, movies: genreTeenager },
+    { genre: animation, movies: genreAnimation },
+    { genre: Comic, movies: genreComic },
+    { genre: Romance, movies: genreRomance },
+    { genre: Action, movies: genreAction },
+    { genre: Thriller, movies: genreThriller },]
 
   };
 
+  addCount = async (arr,userId) => {
+    await Promise.all(arr.map(async (data) => {
+      const episodeCount = await this.episodeRepository.getCountEpisodes(data['contentsId']);
+      const pick = await this.pickRepository.getCountPick(userId, data['contentsId']);
+      pick['count'] ? data['pick'] = true : data['pick'] = false;
+      data['episodeCount'] = episodeCount['count'];
+    }))
+
+    return arr;
+  }
+
 }
+
 
 module.exports = ContentsService;
