@@ -26,9 +26,10 @@ class UserService{
 
         const accessToken = createToken(findUser.userId,'3h');
         const refreshToken = createToken('','7d');
+        const nickName = findUser.nickname
         tokenObject[refreshToken] = findUser.userId;
 
-        return {refreshToken,accessToken}
+        return {refreshToken,accessToken,nickName}
     }
 
     createUser = async ({email, password, nickname}) => {
