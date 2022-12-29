@@ -24,12 +24,13 @@ class UserController{
     loginUser = async (req, res, next) => {
         try {
             const { email, password } = await loginSchema.validateAsync(req.body);
-            const { refreshToken,accessToken } = await this.userService.loginUser({email,password})
+            const { refreshToken,accessToken,nickName } = await this.userService.loginUser({email,password})
 
             res.setHeader('Access-Control-Expose-Headers', 'Access-Token, Refresh-Token');
             res.setHeader('Access-Token', `Bearer ${accessToken}`);
             res.setHeader('Refresh-Token', `Bearer ${refreshToken}`);
-            res.json({message: '로그인 성공',});
+
+            res.json({message: '로그인 성공',nickName});
         }catch (error){
             next(error);
         }
