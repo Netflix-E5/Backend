@@ -21,6 +21,7 @@ const updateToken = async (req, res, next) => {
             //액세스 토큰만 없는 경우
             const userId = tokenObject[refTokenValue];
             const accessToken = createToken(userId,'3h');
+            res.setHeader('Access-Control-Expose-Headers', 'Access-Token');
             res.setHeader('Access-Token', `Bearer ${accessToken}`).json({message:"새로운 토큰이 발급되었습니다."});
         }
         res.json({message:"토큰의 기간이 아직 유효합니다."});

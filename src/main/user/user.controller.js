@@ -24,13 +24,14 @@ class UserController {
     loginUser = async (req, res, next) => {
         try {
             const { email, password } = await loginSchema.validateAsync(req.body);
-            const { refreshToken, accessToken } = await this.userService.loginUser({ email, password })
+            const { refreshToken,accessToken,nickName } = await this.userService.loginUser({email,password})
 
             res.setHeader('Access-Control-Expose-Headers', 'Access-Token, Refresh-Token');
             res.setHeader('Access-Token', `Bearer ${accessToken}`);
             res.setHeader('Refresh-Token', `Bearer ${refreshToken}`);
-            res.json({ message: '로그인 성공', });
-        } catch (error) {
+
+            res.json({message: '로그인 성공',nickName});
+        }catch (error){
             next(error);
         }
     }
@@ -40,16 +41,16 @@ class UserController {
             const { email, password, nickname } = await schema.validateAsync(req.body);
             await emailSchema.validateAsync(email);
             await passwordSchema.validateAsync(password);
-            await this.userService.createUser({ email, password, nickname })
+            await this.userService.createUser({email, password, nickname})
 
-            res.json({ message: "회원가입 되었습니다." })
+            res.json({message: "회원가입 되었습니다."})
 
         } catch (error) {
             next(error);
         }
     }
-    test = async (req, res, next) => {
-        res.json({ message: 'test!' })
+    test = async (req,res,next) => {
+        res.json({message:'test!'})
     }
 }
 
