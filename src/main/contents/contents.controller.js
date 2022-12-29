@@ -23,7 +23,7 @@ class ContentsController {
 
   getOneMovie = async (req, res, next) => {
     try {
-      const { contentsId } = req.locals;
+      const { contentsId } = req.params;
 
       const movie = await this.contentsService.getOneMovie(contentsId);
       res.status(200).json({ data: movie });
@@ -38,10 +38,10 @@ class ContentsController {
   getRating = async (req, res, next) => {
     try {
 
-      // const { userId } = req.locals
-      // if (!userId) throw new InvalidParamsError();
+      const { userId } = res.locals.user;
+      if (!userId) throw new InvalidParamsError();
 
-      const Rating = await this.contentsService.getRating();
+      const Rating = await this.contentsService.getRating({userId});
 
 
       res.status(200).json({ data: Rating });
@@ -55,11 +55,10 @@ class ContentsController {
   //장르별 조회
   getGenre = async (req, res, next) => {
     try {
+      const { userId } = res.locals.user;
+      if (!userId) throw new InvalidParamsError();
 
-      // const { userId } = req.locals;
-      // if (!userId) throw new InvalidParamsError();
-
-      const Genre = await this.contentsService.getGenre();
+      const Genre = await this.contentsService.getGenre({userId});
 
 
       res.status(200).json({ data: Genre });

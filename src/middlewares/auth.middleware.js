@@ -8,6 +8,7 @@ module.exports = async (req, res, next) => {
     try {
         const accessToken = req.header('Access-Token');
         const refreshToken = req.header('Refresh-Token')
+
         const [accTokenType, accTokenValue] = accessToken.split(' ');
         const [refTokenType, refTokenValue] = refreshToken.split(' ');
 
@@ -45,10 +46,9 @@ module.exports = async (req, res, next) => {
             throw new AuthenticationError("Access Token 만료");
         }
 
-        const { userId } = jwt.verify(accessToken, process.env.TOKEN_SECRET);
+        const { userId } = jwt.verify(accTokenValue, process.env.TOKEN_SECRET);
 
-        // !!! controller에서 값을 받을 때, 기존과 같이 user객체가 아닌 accessTokenId(숫자)가 반환됩니다. -> "userId = res.locals.user"로 받으세요 !!!
-        res.locals.user = userId;
+        res.locals.user = { userId };
         next();
     } catch (error) {
         next(error);

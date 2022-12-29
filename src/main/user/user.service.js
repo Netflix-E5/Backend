@@ -24,7 +24,7 @@ class UserService{
         const findUser =  await this.userRepository.findLogin({email,password});
         if(!findUser) throw new ValidationError("아이디 또는 비밀번호를 잘못 입력했습니다.")
 
-        const accessToken = createToken(findUser.userId,'1m');
+        const accessToken = createToken(findUser.userId,'3h');
         const refreshToken = createToken('','7d');
         const nickName = findUser.nickname
         tokenObject[refreshToken] = findUser.userId;
